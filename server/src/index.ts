@@ -1,63 +1,19 @@
+import exporess from "express";
+import ip from "ip";
+import cors from "cors";
 import "dotenv/config";
 import config from "../config/config";
-import cors from "cors";
-import { errorHandler } from "./errorHandler";
-import express, { NextFunction, Request, Response, Router } from "express";
-import { Express } from "express-serve-static-core";
-import { createServer, Server } from "http";
-import { router } from "./routes";
 
-// start an app with server and connection
-export class Application {
-  server: Server;
-  connection: any;
-  constructor(server: Server, connection: any) {
-    this.server = server;
-    this.connection = connection;
-  }
+const app = exporess();
 
-  public stop() {
-    this.server.close();
-    this.connection.close();
-  }
-}
+const PORT = config.PORT || 3000;
+app.use(cors({ origin: "*" }));
+app.use(exporess.json());
 
-//start server for app or to test integration tests
-export async function applicationStart() {
-  const databaseName =
-    config.NODE_ENV === "test" ? config.TEST_DATABASE : config.DATABASE;
-  return startServer(databaseName || "");
-}
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-// set up middlewares
-export async function appSetup(app: Express, router: Router) {
-  app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use("/skins", router);
-  app.use(
-    (
-      error: Error,
-      _request: Request,
-      response: Response,
-      next: NextFunction
-    ) => {
-      errorHandler(error, response, next);
-    }
-  );
-}
-
-async function startServer(databaseName: string) {
-  //startDatabase
-  const dataBaseDetails = await initDataBase(databaseName);
-  //startServer
-  const app = express();
-  await appSetup(app, router);
-  const httpServer = createServer(app);
-
-  const server = httpServer.listen(config.PORT, () => {
-    console.log(`Server is listening on port ${config.PORT}! 🍄 `);
-  });
-
-  return new Application(server, dataBaseDetails.connectionDetails, io);
-}
+app.listen(PORT, () => {
+  console.log(`Server running at http://${ip.address()}:${PORT} 🍄`);
+});

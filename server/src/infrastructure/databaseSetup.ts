@@ -2,15 +2,15 @@ import { Sequelize } from "sequelize";
 import { createConnection } from "mysql2/promise";
 import config from "../../config/config";
 
-type connectionConfig = {
+interface ConnectionConfig {
   host: string;
   user: string;
   password: string;
-};
+}
 
 export async function createSQLDatabase(
   dataBaseName: string,
-  connectionConfig: connectionConfig
+  connectionConfig: ConnectionConfig
 ) {
   let connection;
   try {
@@ -57,17 +57,17 @@ export const testSQLConnection = async (sequelize: Sequelize) => {
 };
 
 export const initDataBase = async (dataBaseName: string) => {
-  const connectionConfig = {
-    host: config.HOST,
-    user: config.MYSQL_USER,
-    password: config.MYSQL_PASSWORD,
+  const connectionConfig: ConnectionConfig = {
+    host: config.HOST || "",
+    user: config.MYSQL_USER || "",
+    password: config.MYSQL_PASSWORD || "",
   };
   await createSQLDatabase(dataBaseName, connectionConfig);
   const sequelize = createSequelizer(
     dataBaseName,
-    config.MYSQL_USER,
-    config.MYSQL_PASSWORD,
-    config.HOST
+    config.MYSQL_USER!,
+    config.MYSQL_PASSWORD!,
+    config.HOST!
   );
   await testSQLConnection(sequelize);
   return { connectionDetails: sequelize };

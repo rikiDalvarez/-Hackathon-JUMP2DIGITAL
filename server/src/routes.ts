@@ -21,4 +21,3 @@ router.put("/skins/myskins/color", (req, res) => {
 router.delete("/skins/myskins/delete/${id}", (req, res) => {
   res.send("You deleted a skin");
 });
-çç;

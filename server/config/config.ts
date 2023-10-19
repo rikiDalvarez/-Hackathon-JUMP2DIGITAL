@@ -40,7 +40,7 @@ const getConfig = (): ENV => {
     PORT: process.env.PORT ? Number(process.env.PORT) : undefined,
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_ENV: process.env.DATABASE_ENV,
-    SQL_URI: process.env.MONGO_URI,
+    SQL_URI: process.env.SQL_URI,
     MYSQL_USER: process.env.MYSQL_USER,
     MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
     DATABASE: process.env.DATABASE,
