@@ -1,10 +1,9 @@
 import { Router } from "express";
+import { getAvailableSkins } from "./controller/skins.controller";
 
 export const router = Router();
 
-router.get("/available", (req, res) => {
-  res.send("5 skins available");
-});
+router.get("/available", getAvailableSkins);
 
 router.post("/buy", (req, res) => {
   res.send("You bought a skin");
