@@ -1,4 +1,4 @@
-const QUERY = {
+const QUERY_SKINS = {
   SELECT_AVAILABLE_SKINS:
     "SELECT * FROM skins WHERE quantity > 0 ORDER BY created_at DESC LIMIT 100",
   SELECT_SKIN: "SELECT * FROM skins WHERE id = ?",
@@ -7,3 +7,5 @@ const QUERY = {
   UPDATE_SKIN:
     "UPDATE skins SET name = ?, price = ?, type = ?, color = ?, quantity = ? WHERE id = ?",
 };
+
+export default QUERY_SKINS;
