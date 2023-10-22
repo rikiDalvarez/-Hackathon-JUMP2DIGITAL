@@ -14,7 +14,8 @@ export const createUser = async (req: Request, res: Response) => {
   });
 };
 export const getUser = async (req: Request, res: Response) => {
-  database.query(QUERY_USERS.SELECT_USER, (err, results) => {
+  const { id } = req.body;
+  database.query(QUERY_USERS.SELECT_USER, [id], (err, results) => {
     console.log("testing");
     console.log(results);
     console.log({ err });

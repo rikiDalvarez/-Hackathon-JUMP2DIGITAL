@@ -3,27 +3,26 @@ import {
   getAvailableSkins,
   createSkin,
   getSkins,
+  getSkin,
 } from "./controller/skins.controller";
-import { createUser } from "./controller/users.controller";
+import { createUser, getUser } from "./controller/users.controller";
+import {
+  addSkin,
+  deleteUserSkin,
+  getUserSkins,
+  updateUserSkinColor,
+  userSkins,
+} from "./controller/userSkins.controller";
 
 export const router = Router();
+
 router.post("/user", createUser);
+router.get("/user", getUser);
 router.get("/available", getAvailableSkins);
 router.post("/available", createSkin);
-
-router.post("/buy", (req, res) => {
-  res.send("You bought a skin");
-});
-
-router.get("/myskins", (req, res) => {
-  res.send("You have 5 skins");
-});
-
-router.put("/myskins/color", (req, res) => {
-  res.send("You changed the color of your skin");
-});
-
-router.delete("/myskins/delete/:id", (req, res) => {
-  console.log(req.params.id);
-  res.send("You deleted a skin");
-});
+router.get("/userskins", userSkins);
+router.post("/buy", addSkin);
+router.get("/myskins", getUserSkins);
+router.put("/myskins/color", updateUserSkinColor);
+router.delete("/myskins/delete/:id", deleteUserSkin);
+router.get("/getskin/:id", getSkin);
