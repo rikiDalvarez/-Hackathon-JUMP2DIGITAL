@@ -5,3 +5,5 @@ const QUERY_USERS = {
   UPDATE_USER: "UPDATE users SET email = ? WHERE id = ?",
   DELETE_USER: "DELETE FROM users WHERE id = ?",
 };
+
+export default QUERY_USERS;

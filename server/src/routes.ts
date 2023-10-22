@@ -4,10 +4,12 @@ import {
   createSkin,
   getSkins,
 } from "./controller/skins.controller";
+import { createUser } from "./controller/users.controller";
 
 export const router = Router();
-
+router.post("/user", createUser);
 router.get("/available", getAvailableSkins);
+router.post("/available", createSkin);
 
 router.post("/buy", (req, res) => {
   res.send("You bought a skin");

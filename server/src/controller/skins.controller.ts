@@ -3,14 +3,19 @@ import database from "../../config/mysql.config";
 import QUERY_SKINS from "../query/skins.query";
 
 export const createSkin = async (req: Request, res: Response) => {
-  const { name, price } = req.body;
-  database.query(QUERY_SKINS.CREATE_SKIN, [name, price], (err, results) => {
-    if (err) {
-      res.status(500).json({ message: err.message });
-    } else {
-      res.status(201).json({ skin: results });
+  const { name, price, color, type, quantity } = req.body;
+  console.log("reqBody:", req.body);
+  database.query(
+    QUERY_SKINS.CREATE_SKIN,
+    [name, price, type, color, quantity],
+    (err, results) => {
+      if (err) {
+        res.status(500).json({ message: err.message });
+      } else {
+        res.status(201).json({ skin: results });
+      }
     }
-  });
+  );
 };
 export const getAvailableSkins = async (req: Request, res: Response) => {
   database.query(QUERY_SKINS.SELECT_AVAILABLE_SKINS, (err, results) => {
