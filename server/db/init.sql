@@ -1,6 +1,4 @@
-CREATE DATABASE IF NOT EXISTS store;
 
-USE store;
 
 DROP TABLE IF EXISTS skins;
 

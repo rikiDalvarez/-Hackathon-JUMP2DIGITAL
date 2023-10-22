@@ -11,6 +11,7 @@ interface ENV {
   NODE_ENV: string | undefined;
   DATABASE_ENV: string | undefined;
   PORT: number | undefined;
+  DB_PORT: number | undefined;
   SQL_URI: string | undefined;
   MYSQL_USER: string | undefined;
   MYSQL_PASSWORD: string | undefined;
@@ -22,6 +23,7 @@ interface ENV {
 interface Config {
   HOST: string | undefined;
   PORT: number | undefined;
+  DB_PORT: number | undefined;
   NODE_ENV: string | undefined;
   DATABASE_ENV: string | undefined;
   SQL_URI: string | undefined;
@@ -38,6 +40,7 @@ const getConfig = (): ENV => {
     // MONGO_URI_TEST: process.env.MONGO_URI_TEST,
     HOST: process.env.HOST,
     PORT: process.env.PORT ? Number(process.env.PORT) : undefined,
+    DB_PORT: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_ENV: process.env.DATABASE_ENV,
     SQL_URI: process.env.SQL_URI,

@@ -1,4 +1,5 @@
 const QUERY_SKINS = {
+  SELECT_SKINS: "SELECT * FROM skins",
   SELECT_AVAILABLE_SKINS:
     "SELECT * FROM skins WHERE quantity > 0 ORDER BY created_at DESC ",
   SELECT_SKIN: "SELECT * FROM skins WHERE id = ?",

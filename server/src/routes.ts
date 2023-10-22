@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getAvailableSkins } from "./controller/skins.controller";
+import {
+  getAvailableSkins,
+  createSkin,
+  getSkins,
+} from "./controller/skins.controller";
 
 export const router = Router();
 
