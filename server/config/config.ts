@@ -3,10 +3,8 @@ import dotenv from "dotenv";
 
 // Parsing the env file.
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
-//console.log(path.resolve(process.cwd(), ".env") )
 
 // Interface to load env variables
-
 interface ENV {
   NODE_ENV: string | undefined;
   DATABASE_ENV: string | undefined;
