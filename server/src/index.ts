@@ -11,8 +11,7 @@ const PORT = config.PORT || 3000;
 
 app.use(cors({ origin: "*" }));
 app.use(exporess.json());
-app.use("/skins", router);
-app.use("/skin", router);
+app.use(router);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://${ip.address()}:${PORT} 🍄`);
