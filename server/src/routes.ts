@@ -15,14 +15,17 @@ import {
 } from "./controller/userSkins.controller";
 
 export const router = Router();
+//requested by pdf "prueba backend"
+router.get("/skins/available", getAvailableSkins);
+router.post("/skins/buy", addSkin);
+router.get("/skins/myskins", getUserSkins);
+router.put("/skins/color", updateUserSkinColor);
+router.delete("/skins/delete/:id", deleteUserSkin);
+router.get("/skin/getskin/:id", getSkin);
 
-router.post("/user", createUser);
-router.get("/user", getUser);
-router.get("/available", getAvailableSkins);
-router.post("/available", createSkin);
+//routes to test easily api
+router.post("/skins/user", createUser);
+router.get("/skins/user", getUser);
+router.post("/skins/available", createSkin);
+router.post("/skins/buy", addSkin);
 router.get("/userskins", userSkins);
-router.post("/buy", addSkin);
-router.get("/myskins", getUserSkins);
-router.put("/myskins/color", updateUserSkinColor);
-router.delete("/myskins/delete/:id", deleteUserSkin);
-router.get("/getskin/:id", getSkin);
