@@ -35,7 +35,6 @@ interface Config {
 
 const getConfig = (): ENV => {
   return {
-    // MONGO_URI_TEST: process.env.MONGO_URI_TEST,
     HOST: process.env.HOST,
     PORT: process.env.PORT ? Number(process.env.PORT) : undefined,
     DB_PORT: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,

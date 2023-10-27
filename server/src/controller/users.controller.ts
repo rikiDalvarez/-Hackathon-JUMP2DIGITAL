@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import database from "../../config/mysql.config";
 import QUERY_USERS from "../query/users.query";
+import { userService } from "../dependencies";
 
 export const createUser = async (req: Request, res: Response) => {
   const { email } = req.body;
@@ -45,4 +46,12 @@ export const deleteUser = async (req: Request, res: Response) => {
       res.status(200).send({ skins: results });
     }
   });
+};
+
+export const test = async (req: Request, res: Response) => {
+  const { id } = req.body;
+  console.log({ id });
+  const test = await userService.getUser(id);
+  console.log("test", test);
+  res.status(200).send({ test });
 };
