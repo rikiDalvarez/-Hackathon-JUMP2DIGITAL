@@ -1,11 +1,15 @@
 import database from "../config/mysql.config";
-import { UserManager } from "./manager/userManager";
+import QUERY_USERSKINS from "./query/userSkins.query";
 import QUERY_USERS from "./query/users.query";
+import { UserManager } from "./manager/userManager";
 import { UserService } from "./services/UserService";
+import { UserSkinsManager } from "./manager/userSkinsManager";
+import { UserSkinService } from "./services/UserSkinService";
 
-// Create an instance of the UserManager class with the database connection and queries
-export const userManager = new UserManager(database, QUERY_USERS);
-
+// Instaciate User services
+const userManager = new UserManager(database, QUERY_USERS);
 export const userService = new UserService(userManager);
 
-// console.log("dependenciesu", userService);
+// Instaciate UserSkin services
+const userSkinManager = new UserSkinsManager(database, QUERY_USERSKINS);
+export const userSkinService = new UserSkinService(userSkinManager);

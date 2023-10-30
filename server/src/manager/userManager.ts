@@ -12,9 +12,6 @@ export class UserManager implements UserInterface {
     return "test";
   }
 
-  // async getUser(id: number): Promise<string> {
-  //   return id.toString();
-  // }
   async getUser(id: number): Promise<string> {
     return new Promise((resolve, reject) => {
       this.db.query(this.query.SELECT_USER, [id], (err: any, results: any) => {

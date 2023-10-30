@@ -2,6 +2,7 @@ import database from "../../config/mysql.config";
 import QUERY_USERSKINS from "../query/userSkins.query";
 import QUERY_SKINS from "../query/skins.query";
 import QUERY_USERS from "../query/users.query";
+import { userSkinService } from "../dependencies";
 
 export const userSkins = async (req: any, res: any) => {
   database.query(QUERY_USERSKINS.SELECT_USERS, (err, results) => {
@@ -15,6 +16,8 @@ export const userSkins = async (req: any, res: any) => {
 
 export const addSkin = async (req: any, res: any) => {
   const { user_id, skin_id } = req.body;
+  const test = userSkinService.buySkin(user_id, skin_id);
+  console.log(test);
   try {
     const availableSkins: any = await new Promise((resolve, reject) => {
       database.query(QUERY_SKINS.SELECT_AVAILABLE_SKINS, (err, results) => {
@@ -91,47 +94,34 @@ export const addSkin = async (req: any, res: any) => {
 
 export const getUserSkins = async (req: any, res: any) => {
   const { user_id } = req.body;
-  try {
-    const userSkins = await new Promise((resolve, reject) => {
-      database.query(
-        QUERY_USERSKINS.SELECT_USER_SKINS,
-        [user_id],
-        (err, results) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(results);
-          }
-        }
-      );
-    });
-    res.status(200).json({ skins: userSkins });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
+  const mySkins = await userSkinService.getMySkins(user_id);
+  console.log(mySkins);
+  res.status(200).json({ skins: mySkins });
 };
 
 export const updateUserSkinColor = async (req: any, res: any) => {
   const { color, id } = req.body;
-  console.log("reqBody:", req.body);
-  try {
-    const updatedSkin = await new Promise((resolve, reject) => {
-      database.query(
-        QUERY_USERSKINS.UPDATE_USERSKIN_COLOR,
-        [color, id],
-        (err, results) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(results);
-          }
-        }
-      );
-    });
-    res.status(200).json({ skin: updatedSkin });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
+  const updatedSkin = await userSkinService.updateSkinColor(id, color);
+  console.log(updatedSkin);
+  res.status(200).json({ skin: updatedSkin });
+  // try {
+  //   const updatedSkin = await new Promise((resolve, reject) => {
+  //     database.query(
+  //       QUERY_USERSKINS.UPDATE_USERSKIN_COLOR,
+  //       [color, id],
+  //       (err, results) => {
+  //         if (err) {
+  //           reject(err);
+  //         } else {
+  //           resolve(results);
+  //         }
+  //       }
+  //     );
+  //   });
+  //   res.status(200).json({ skin: updatedSkin });
+  // } catch (error: any) {
+  //   res.status(500).json({ message: error.message });
+  // }
 };
 
 export const deleteUserSkin = async (req: any, res: any) => {
