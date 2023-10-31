@@ -1,5 +1,5 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
-
+import QUERY_SKINS from "../query/skins.query";
 export class UserSkinsManager implements UserSkinInterface {
   db: any;
   query: any;
@@ -8,11 +8,31 @@ export class UserSkinsManager implements UserSkinInterface {
     this.query = query;
   }
 
-  async buySkin(skinId: number, userId: number): Promise<object> {
+  async buySkin(
+    userId: number,
+    skinId: number,
+    skinColor: string
+  ): Promise<object> {
+    // const skin = await this.db.query(
+    //   QUERY_SKINS.SELECT_SKIN,
+    //   [skinId],
+    //   (err: any, results: any) => {
+    //     console.log("testing");
+    //     console.log(results);
+    //     console.log({ err });
+    //     if (err) {
+    //       return { message: err.message };
+    //     } else {
+    //       return { skins: results };
+    //     }
+    //   }
+    // );
+    // console.log(skin);
+
     return new Promise((resolve, reject) => {
       this.db.query(
-        this.query.BUY_SKIN,
-        [skinId, userId],
+        this.query.CREATE_NEW_USER_SKIN,
+        [userId, skinId, "black"],
         (err: any, results: any) => {
           if (err) {
             reject(err.message);

@@ -11,7 +11,7 @@ export class UserManager implements UserInterface {
   async createUser(email: string): Promise<string> {
     return new Promise((resolve, reject) => {
       this.db.query(
-        this.query.INSERT_USER,
+        this.query.CREATE_USER,
         [email],
         (err: any, results: any) => {
           if (err) {

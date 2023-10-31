@@ -6,7 +6,7 @@ export class UserSkinService {
     this.userSkinInterface = userSkinInterface;
   }
 
-  buySkin(skinId: number, userId: number): Promise<object> {
+  async buySkin(skinId: number, userId: number): Promise<object> {
     return this.userSkinInterface.buySkin(skinId, userId);
   }
 
