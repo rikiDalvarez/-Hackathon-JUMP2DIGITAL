@@ -6,8 +6,12 @@ export class UserSkinService {
     this.userSkinInterface = userSkinInterface;
   }
 
-  async buySkin(skinId: number, userId: number): Promise<object> {
-    return this.userSkinInterface.buySkin(skinId, userId);
+  async buySkin(
+    skinId: number,
+    userId: number,
+    skinColor: string
+  ): Promise<object> {
+    return this.userSkinInterface.buySkin(skinId, userId, skinColor);
   }
 
   getMySkins(userId: number): Promise<object[]> {

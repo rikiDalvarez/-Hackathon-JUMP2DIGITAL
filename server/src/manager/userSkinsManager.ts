@@ -11,28 +11,14 @@ export class UserSkinsManager implements UserSkinInterface {
   async buySkin(
     userId: number,
     skinId: number,
-    skinColor: string
+    color: string
   ): Promise<object> {
-    // const skin = await this.db.query(
-    //   QUERY_SKINS.SELECT_SKIN,
-    //   [skinId],
-    //   (err: any, results: any) => {
-    //     console.log("testing");
-    //     console.log(results);
-    //     console.log({ err });
-    //     if (err) {
-    //       return { message: err.message };
-    //     } else {
-    //       return { skins: results };
-    //     }
-    //   }
-    // );
-    // console.log(skin);
-
     return new Promise((resolve, reject) => {
+      console.log("inside buy skin");
+      console.log(userId, skinId, color);
       this.db.query(
         this.query.CREATE_NEW_USER_SKIN,
-        [userId, skinId, "black"],
+        [userId, skinId, color],
         (err: any, results: any) => {
           if (err) {
             reject(err.message);
