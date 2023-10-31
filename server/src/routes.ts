@@ -5,7 +5,7 @@ import {
   getSkins,
   getSkin,
 } from "./controller/skins.controller";
-import { createUser, getUser, test } from "./controller/users.controller";
+import { createUser, getUser } from "./controller/users.controller";
 import {
   addSkin,
   deleteUserSkin,
@@ -29,4 +29,3 @@ router.get("/skins/user", getUser);
 router.post("/skins/available", createSkin);
 router.post("/skins/buy", addSkin);
 router.get("/skins/userskins", userSkins);
-router.get("/test", test);

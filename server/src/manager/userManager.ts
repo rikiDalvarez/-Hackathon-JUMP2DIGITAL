@@ -9,7 +9,20 @@ export class UserManager implements UserInterface {
   }
 
   async createUser(email: string): Promise<string> {
-    return "test";
+    return new Promise((resolve, reject) => {
+      this.db.query(
+        this.query.INSERT_USER,
+        [email],
+        (err: any, results: any) => {
+          if (err) {
+            reject(err.message);
+          } else {
+            console.log(results);
+            resolve("User created");
+          }
+        }
+      );
+    });
   }
 
   async getUser(id: number): Promise<string> {

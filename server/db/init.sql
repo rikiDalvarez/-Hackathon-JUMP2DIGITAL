@@ -11,7 +11,7 @@ CREATE TABLE skins (
 		type  		 VARCHAR(255) NOT NULL,
 		color			 VARCHAR(255) NOT NULL,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		avalable 	 BOOLEAN NOT NULL,
+		quantity 	 INT NOT NULL,
 		PRIMARY KEY (id)
 );
 

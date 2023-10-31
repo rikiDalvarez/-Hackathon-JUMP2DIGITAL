@@ -16,7 +16,7 @@ export const userSkins = async (req: any, res: any) => {
 
 export const addSkin = async (req: any, res: any) => {
   const { user_id, skin_id } = req.body;
-  const test = userSkinService.buySkin(user_id, skin_id);
+  const test = await userSkinService.buySkin(user_id, skin_id);
   console.log(test);
   try {
     const availableSkins: any = await new Promise((resolve, reject) => {
@@ -104,24 +104,6 @@ export const updateUserSkinColor = async (req: any, res: any) => {
   const updatedSkin = await userSkinService.updateSkinColor(id, color);
   console.log(updatedSkin);
   res.status(200).json({ skin: updatedSkin });
-  // try {
-  //   const updatedSkin = await new Promise((resolve, reject) => {
-  //     database.query(
-  //       QUERY_USERSKINS.UPDATE_USERSKIN_COLOR,
-  //       [color, id],
-  //       (err, results) => {
-  //         if (err) {
-  //           reject(err);
-  //         } else {
-  //           resolve(results);
-  //         }
-  //       }
-  //     );
-  //   });
-  //   res.status(200).json({ skin: updatedSkin });
-  // } catch (error: any) {
-  //   res.status(500).json({ message: error.message });
-  // }
 };
 
 export const deleteUserSkin = async (req: any, res: any) => {

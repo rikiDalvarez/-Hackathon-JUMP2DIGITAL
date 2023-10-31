@@ -6,7 +6,7 @@ export class UserService {
     this.userInterface = userInterface;
   }
 
-  createUser(email: string): Promise<string> {
+  async createUser(email: string): Promise<string> {
     return this.userInterface.createUser(email);
   }
 
