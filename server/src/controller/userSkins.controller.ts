@@ -16,7 +16,6 @@ export const userSkins = async (req: any, res: any) => {
 
 export const addSkin = async (req: any, res: any) => {
   const { user_id, skin_id } = req.body;
-
   //TODO - use service
   const getSkinColor = (skin_id: number): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -35,31 +34,26 @@ export const addSkin = async (req: any, res: any) => {
   };
 
   const skinColor: string = await getSkinColor(skin_id);
-  console.log("skincolor", skinColor);
 
   const result = await userSkinService.buySkin(user_id, skin_id, skinColor);
-  console.log(result);
   res.status(200).json({ skin: result });
 };
 
 export const getUserSkins = async (req: any, res: any) => {
   const { user_id } = req.body;
   const mySkins = await userSkinService.getMySkins(user_id);
-  console.log(mySkins);
   res.status(200).json({ skins: mySkins });
 };
 
 export const updateUserSkinColor = async (req: any, res: any) => {
   const { color, id } = req.body;
   const updatedSkin = await userSkinService.updateSkinColor(id, color);
-  console.log(updatedSkin);
   res.status(200).json({ skin: updatedSkin });
 };
 
 export const deleteUserSkin = async (req: any, res: any) => {
   //TODO - add error handler for invalid id
   const { id } = req.params;
-  console.log("inside", id);
   try {
     const deletedSkin = await new Promise((resolve, reject) => {
       database.query(QUERY_USERSKINS.DELETE_USER_SKIN, [id], (err, results) => {

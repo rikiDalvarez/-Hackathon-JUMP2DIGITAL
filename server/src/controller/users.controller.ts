@@ -5,9 +5,7 @@ import { userService } from "../dependencies";
 
 export const createUser = async (req: Request, res: Response) => {
   const { email } = req.body;
-  console.log("reqBody:", req.body);
   const newUser = await userService.createUser(email);
-  // console.log("newUser:", newUser);
   res.status(200).send({ newUser });
 };
 

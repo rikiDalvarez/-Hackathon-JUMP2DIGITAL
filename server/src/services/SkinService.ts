@@ -7,7 +7,7 @@ export class SkinService {
     this.skinInterface = skinInterface;
   }
 
-  async getAvaibleSkin(): Promise<object> {
+  async getAvailableSkin(): Promise<object> {
     return this.skinInterface.getAvailableSkin();
   }
 

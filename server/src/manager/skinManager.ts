@@ -11,7 +11,7 @@ export class SkinManager implements SkinInterface {
   async getAvailableSkin(): Promise<object[]> {
     return new Promise((resolve, reject) => {
       this.db.query(
-        this.query.GET_AVAILABLE_SKINS,
+        this.query.SELECT_AVAILABLE_SKINS,
         (err: any, results: any) => {
           if (err) {
             reject(err.message);
