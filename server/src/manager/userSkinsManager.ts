@@ -33,7 +33,7 @@ export class UserSkinsManager implements UserSkinInterface {
   async getMySkins(userId: number): Promise<object[]> {
     return new Promise((resolve, reject) => {
       this.db.query(
-        this.query.GET_MY_SKINS,
+        this.query.SELECT_USER_SKINS,
         [userId],
         (err: any, results: any) => {
           if (err) {

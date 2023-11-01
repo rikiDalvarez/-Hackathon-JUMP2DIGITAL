@@ -38,9 +38,9 @@ export const addSkin = async (req: any, res: any) => {
   const skinColor: string = await getSkinColor(skin_id);
   console.log("skincolor", skinColor);
 
-  const test = await userSkinService.buySkin(user_id, skin_id, skinColor);
-  console.log(test);
-  res.status(200).json({ skin: test });
+  const result = await userSkinService.buySkin(user_id, skin_id, skinColor);
+  console.log(result);
+  res.status(200).json({ skin: result });
 };
 
 export const getUserSkins = async (req: any, res: any) => {

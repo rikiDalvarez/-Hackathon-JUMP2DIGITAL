@@ -34,7 +34,7 @@ export class UserManager implements UserInterface {
           if (results.length === 0) {
             reject("User not found");
           } else {
-            resolve(results[0].email);
+            resolve(results[0]);
           }
         }
       });
