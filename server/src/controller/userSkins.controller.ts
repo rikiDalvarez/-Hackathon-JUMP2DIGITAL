@@ -1,7 +1,6 @@
 import database from "../../config/mysql.config";
 import QUERY_USERSKINS from "../query/userSkins.query";
 import QUERY_SKINS from "../query/skins.query";
-import QUERY_USERS from "../query/users.query";
 import { userSkinService } from "../dependencies";
 import { RowDataPacket } from "mysql2";
 
@@ -58,6 +57,7 @@ export const updateUserSkinColor = async (req: any, res: any) => {
 };
 
 export const deleteUserSkin = async (req: any, res: any) => {
+  //TODO - add error handler for invalid id
   const { id } = req.params;
   console.log("inside", id);
   try {
@@ -70,7 +70,13 @@ export const deleteUserSkin = async (req: any, res: any) => {
         }
       });
     });
-    res.status(200).json({ skin: deletedSkin });
+    if (!deletedSkin) {
+      throw new Error("internal error");
+    }
+    if (deletedSkin.affectedRows === 0) {
+      throw new Error("Skin not found");
+    }
+    res.status(200).json("Skin deleted");
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
