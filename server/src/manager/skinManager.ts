@@ -25,17 +25,13 @@ export class SkinManager implements SkinInterface {
 
   async getSkinById(id: number): Promise<object> {
     return new Promise((resolve, reject) => {
-      this.db.query(
-        this.query.GET_SKIN_BY_ID,
-        [id],
-        (err: any, results: any) => {
-          if (err) {
-            reject(err.message);
-          } else {
-            resolve(results[0]);
-          }
+      this.db.query(this.query.SELECT_SKIN, [id], (err: any, results: any) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(results[0]);
         }
-      );
+      });
     });
   }
 }

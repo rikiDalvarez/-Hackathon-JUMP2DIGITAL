@@ -40,8 +40,10 @@ export const getSkins = async (req: Request, res: Response) => {
 
 export const getSkin = async (req: Request, res: Response) => {
   const { id } = req.params;
-  console.log("id:", id);
   const skin = await skinService.getSkinById(Number(id));
+  if (skin) {
+    res.status(200).send({ skin });
+  }
 
   // database.query(QUERY_SKINS.SELECT_SKIN, [id], (err, results) => {
   //   console.log("testing");
