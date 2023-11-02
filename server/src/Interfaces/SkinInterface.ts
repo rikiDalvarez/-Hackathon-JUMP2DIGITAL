@@ -1,4 +1,5 @@
+import { Skin } from "../types";
 export interface SkinInterface {
-  getAvailableSkin(): Promise<Object[]>;
-  getSkinById(skinId: number): Promise<Object>;
+  getAvailableSkin(): Promise<Skin[]>;
+  getSkinById(skinId: number): Promise<Skin>;
 }

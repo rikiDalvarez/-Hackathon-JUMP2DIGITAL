@@ -1,5 +1,6 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
 import QUERY_SKINS from "../query/skins.query";
+import { Skin } from "../types";
 export class UserSkinsManager implements UserSkinInterface {
   db: any;
   query: any;
@@ -8,11 +9,7 @@ export class UserSkinsManager implements UserSkinInterface {
     this.query = query;
   }
 
-  async buySkin(
-    userId: number,
-    skinId: number,
-    color: string
-  ): Promise<object> {
+  async buySkin(userId: number, skinId: number, color: string): Promise<Skin> {
     return new Promise((resolve, reject) => {
       console.log("inside buy skin");
       console.log(userId, skinId, color);

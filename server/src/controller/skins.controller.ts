@@ -9,7 +9,7 @@ export const getSkin = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const numberId = Number(id);
+  const numberId: number = Number(id);
 
   if (isNaN(numberId) || numberId < 0) {
     return next(new Error("invalid_Id"));

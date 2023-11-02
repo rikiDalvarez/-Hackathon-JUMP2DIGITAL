@@ -1,4 +1,5 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
+import { Skin } from "../types";
 
 export class UserSkinService {
   userSkinInterface: UserSkinInterface;
@@ -10,7 +11,7 @@ export class UserSkinService {
     skinId: number,
     userId: number,
     skinColor: string
-  ): Promise<object> {
+  ): Promise<Skin> {
     return this.userSkinInterface.buySkin(skinId, userId, skinColor);
   }
 

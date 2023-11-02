@@ -16,5 +16,8 @@ export interface Skin {
   id?: number;
   name: string;
   price: number;
+  type: string;
+  color: string;
+  quantity: number;
   created_at?: Date;
 }

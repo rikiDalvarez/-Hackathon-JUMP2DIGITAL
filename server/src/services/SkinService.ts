@@ -11,7 +11,7 @@ export class SkinService {
     return this.skinInterface.getAvailableSkin();
   }
 
-  async getSkinById(id: number): Promise<object> {
+  async getSkinById(id: number): Promise<Skin> {
     return this.skinInterface.getSkinById(id);
   }
 }

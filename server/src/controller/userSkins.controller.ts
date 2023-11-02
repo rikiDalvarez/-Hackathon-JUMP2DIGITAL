@@ -2,40 +2,14 @@ import database from "../../config/mysql.config";
 import QUERY_USERSKINS from "../query/userSkins.query";
 import QUERY_SKINS from "../query/skins.query";
 import { userSkinService } from "../dependencies";
+import { skinService } from "../dependencies";
 import { RowDataPacket } from "mysql2";
-
-export const userSkins = async (req: any, res: any) => {
-  database.query(QUERY_USERSKINS.SELECT_USERS, (err, results) => {
-    if (err) {
-      res.status(500).json({ message: err.message });
-    } else {
-      res.status(200).json({ skins: results });
-    }
-  });
-};
+import { Skin } from "../types";
 
 export const addSkin = async (req: any, res: any) => {
   const { user_id, skin_id } = req.body;
-  //TODO - use service
-  const getSkinColor = (skin_id: number): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      database.query(
-        QUERY_SKINS.SELECT_SKIN,
-        [skin_id],
-        (err, results: RowDataPacket[]) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(results[0].color);
-          }
-        }
-      );
-    });
-  };
-
-  const skinColor: string = await getSkinColor(skin_id);
-
-  const result = await userSkinService.buySkin(user_id, skin_id, skinColor);
+  const skin: Skin = await skinService.getSkinById(skin_id);
+  const result = await userSkinService.buySkin(user_id, skin_id, skin.color);
   res.status(200).json({ skin: result });
 };
 
@@ -74,4 +48,14 @@ export const deleteUserSkin = async (req: any, res: any) => {
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
+};
+
+export const userSkins = async (req: any, res: any) => {
+  database.query(QUERY_USERSKINS.SELECT_USERS, (err, results) => {
+    if (err) {
+      res.status(500).json({ message: err.message });
+    } else {
+      res.status(200).json({ skins: results });
+    }
+  });
 };

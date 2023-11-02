@@ -13,10 +13,10 @@ import { UserSkinService } from "./services/UserSkinService";
 const userManager = new UserManager(database, QUERY_USERS);
 export const userService = new UserService(userManager);
 
-// Instaciate UserSkin services
-const userSkinManager = new UserSkinsManager(database, QUERY_USERSKINS);
-export const userSkinService = new UserSkinService(userSkinManager);
-
 // Instaciate Skin services
 const skinManager = new SkinManager(database, QUERY_SKINS);
 export const skinService = new SkinService(skinManager);
+
+// Instaciate UserSkin services
+const userSkinManager = new UserSkinsManager(database, QUERY_USERSKINS);
+export const userSkinService = new UserSkinService(userSkinManager);

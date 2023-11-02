@@ -1,5 +1,6 @@
 import { SkinInterface } from "../Interfaces/SkinInterface";
 import { Pool, PoolConnection } from "mysql2";
+import { Skin } from "../types";
 
 export class SkinManager implements SkinInterface {
   db: Pool;
@@ -9,7 +10,7 @@ export class SkinManager implements SkinInterface {
     this.query = query;
   }
 
-  async getAvailableSkin(): Promise<object[]> {
+  async getAvailableSkin(): Promise<Skin[]> {
     return new Promise((resolve, reject) => {
       this.db.query(
         this.query.SELECT_AVAILABLE_SKINS,
@@ -25,7 +26,7 @@ export class SkinManager implements SkinInterface {
     });
   }
 
-  async getSkinById(id: number): Promise<object> {
+  async getSkinById(id: number): Promise<Skin> {
     return new Promise((resolve, reject) => {
       this.db.query(
         {
