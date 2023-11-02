@@ -10,10 +10,8 @@ export const errorHandler = (
     return next(error);
   }
   switch (error.message) {
-    case "GettingWinnerError":
-      return response
-        .status(500)
-        .send({ Error: "Error getting Winners players" });
+    case "invalid_Id":
+      return response.status(400).send({ Error: "Invalid id" });
     case "GettingLoserError":
       return response
         .status(500)

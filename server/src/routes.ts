@@ -29,3 +29,4 @@ router.get("/skins/user", getUser);
 router.post("/skins/available", createSkin);
 router.post("/skins/buy", addSkin);
 router.get("/skins/userskins", userSkins);
+router.get("/test", getSkins);
