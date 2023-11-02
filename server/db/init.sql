@@ -1,6 +1,6 @@
--- CREATE DATABASE IF NOT EXISTS storedb;
+CREATE DATABASE IF NOT EXISTS storedb;
 
--- USE storedb;
+USE storedb;
 
 DROP TABLE IF EXISTS skins;
 

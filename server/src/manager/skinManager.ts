@@ -1,7 +1,8 @@
 import { SkinInterface } from "../Interfaces/SkinInterface";
+import { Pool, PoolConnection } from "mysql2";
 
 export class SkinManager implements SkinInterface {
-  db: any;
+  db: Pool;
   query: any;
   constructor(db: any, query: any) {
     this.db = db;
@@ -27,17 +28,11 @@ export class SkinManager implements SkinInterface {
   async getSkinById(id: number): Promise<object> {
     return new Promise((resolve, reject) => {
       this.db.query(
-        { sql: this.query.SELECT_SKIN, timeout: 4000, values: [id] },
-        // this.query.SELECT_SKIN, [id],
-        //         {
-        //   sql: 'SELECT * FROM `books` WHERE `author` = ?',
-        //   timeout: 40000, // 40s
-        //   values: ['David']
-        // }, function (error, results, fields) {
-        //   // error will be an Error if one occurred during the query
-        //   // results will contain the results of the query
-        //   // fields will contain information about the returned results fields (if any)
-        //       }
+        {
+          sql: this.query.SELECT_SKIN,
+          timeout: 4000,
+          values: [id],
+        },
         (err: any, results: any) => {
           if (err) {
             reject(new Error(err.message));

@@ -26,10 +26,19 @@ export const getSkin = async (
   }
 };
 
-export const getAvailableSkins = async (req: Request, res: Response) => {
-  const skins = await skinService.getAvailableSkin();
-  if (skins) {
+export const getAvailableSkins = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const skins = await skinService.getAvailableSkin();
+    if (!skins) {
+      return next(new Error("skin_not_found"));
+    }
     res.status(200).send({ skins });
+  } catch (error) {
+    return next(error);
   }
 };
 
