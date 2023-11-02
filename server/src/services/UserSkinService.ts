@@ -1,5 +1,6 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
 import { Skin } from "../types";
+import { ResultSetHeader } from "mysql2";
 
 export class UserSkinService {
   userSkinInterface: UserSkinInterface;
@@ -11,7 +12,7 @@ export class UserSkinService {
     skinId: number,
     userId: number,
     skinColor: string
-  ): Promise<Skin> {
+  ): Promise<boolean> {
     return this.userSkinInterface.buySkin(skinId, userId, skinColor);
   }
 

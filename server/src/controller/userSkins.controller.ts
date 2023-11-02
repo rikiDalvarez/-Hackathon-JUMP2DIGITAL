@@ -3,14 +3,34 @@ import QUERY_USERSKINS from "../query/userSkins.query";
 import QUERY_SKINS from "../query/skins.query";
 import { userSkinService } from "../dependencies";
 import { skinService } from "../dependencies";
-import { RowDataPacket } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 import { Skin } from "../types";
+import { NextFunction } from "express";
+import { Request, Response } from "express";
 
-export const addSkin = async (req: any, res: any) => {
+export const addSkin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { user_id, skin_id } = req.body;
-  const skin: Skin = await skinService.getSkinById(skin_id);
-  const result = await userSkinService.buySkin(user_id, skin_id, skin.color);
-  res.status(200).json({ skin: result });
+  if (!user_id || !skin_id) {
+    return next(new Error("Invalid_body"));
+  }
+  try {
+    const skin: Skin = await skinService.getSkinById(skin_id);
+    if (!skin) {
+      return next(new Error("Skin_not_found"));
+    }
+    const result = await userSkinService.buySkin(user_id, skin_id, skin.color);
+    if (result) {
+      res.status(200).json({ message: "congratulations, you bought a skin!" });
+    } else {
+      return next(new Error("Skin_not_found"));
+    }
+  } catch (error) {
+    return next(error);
+  }
 };
 
 export const getUserSkins = async (req: any, res: any) => {

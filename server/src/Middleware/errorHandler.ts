@@ -14,12 +14,12 @@ export const errorHandler = (
       return response.status(400).send({ Error: "Invalid id" });
     case "skin_not_found":
       return response.status(400).send({ Error: "No skin found" });
-    case "GetRankingWithAverageError":
+    case "Invalid_body":
       return response
-        .status(500)
-        .send({ Error: "Error getting players ranking" });
-    case "NameConflictError":
-      return response.status(409).send({ Error: "Name already exists" });
+        .status(400)
+        .send({ Error: "Please provide a correct parameter for the fields" });
+    case "skin_not_found":
+      return response.status(404).send({ Error: "Skin not found" });
     case "EmailConflictError":
       return response.status(409).send({ Error: "Email already exists" });
     case "EmailInvalidError":

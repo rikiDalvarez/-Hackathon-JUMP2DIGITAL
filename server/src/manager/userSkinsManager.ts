@@ -1,6 +1,7 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
 import QUERY_SKINS from "../query/skins.query";
 import { Skin } from "../types";
+import { ResultSetHeader } from "mysql2";
 export class UserSkinsManager implements UserSkinInterface {
   db: any;
   query: any;
@@ -9,10 +10,12 @@ export class UserSkinsManager implements UserSkinInterface {
     this.query = query;
   }
 
-  async buySkin(userId: number, skinId: number, color: string): Promise<Skin> {
+  async buySkin(
+    userId: number,
+    skinId: number,
+    color: string
+  ): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      console.log("inside buy skin");
-      console.log(userId, skinId, color);
       this.db.query(
         this.query.CREATE_NEW_USER_SKIN,
         [userId, skinId, color],
@@ -20,7 +23,8 @@ export class UserSkinsManager implements UserSkinInterface {
           if (err) {
             reject(err.message);
           } else {
-            resolve(results);
+            console.log("results", results);
+            resolve(true);
           }
         }
       );
