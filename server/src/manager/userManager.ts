@@ -1,9 +1,10 @@
+import { Pool } from "mysql2";
 import { UserInterface } from "../Interfaces/UserInterface";
 
 export class UserManager implements UserInterface {
-  db: any;
+  db: Pool;
   query: any;
-  constructor(db: any, query: any) {
+  constructor(db: Pool, query: any) {
     this.db = db;
     this.query = query;
   }

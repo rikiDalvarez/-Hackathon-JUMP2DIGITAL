@@ -1,9 +1,7 @@
 import database from "../../config/mysql.config";
 import QUERY_USERSKINS from "../query/userSkins.query";
-import QUERY_SKINS from "../query/skins.query";
 import { userSkinService } from "../dependencies";
 import { skinService } from "../dependencies";
-import { ResultSetHeader, RowDataPacket } from "mysql2";
 import { Skin } from "../types";
 import { NextFunction } from "express";
 import { Request, Response } from "express";
@@ -33,44 +31,65 @@ export const addSkin = async (
   }
 };
 
-export const getUserSkins = async (req: any, res: any) => {
+export const getUserSkins = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { user_id } = req.body;
-  const mySkins = await userSkinService.getMySkins(user_id);
-  res.status(200).json({ skins: mySkins });
-};
-
-export const updateUserSkinColor = async (req: any, res: any) => {
-  const { color, id } = req.body;
-  const updatedSkin = await userSkinService.updateSkinColor(id, color);
-  res.status(200).json({ skin: updatedSkin });
-};
-
-export const deleteUserSkin = async (req: any, res: any) => {
-  //TODO - add error handler for invalid id
-  const { id } = req.params;
+  if (isNaN(user_id) || user_id < 0) {
+    return next(new Error("invalid_Id"));
+  }
   try {
-    const deletedSkin = await new Promise((resolve, reject) => {
-      database.query(QUERY_USERSKINS.DELETE_USER_SKIN, [id], (err, results) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-    if (!deletedSkin) {
-      throw new Error("internal error");
-    }
-    if (deletedSkin.affectedRows === 0) {
-      throw new Error("Skin not found");
-    }
-    res.status(200).json("Skin deleted");
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    const mySkins = await userSkinService.getMySkins(user_id);
+    res.status(200).json({ skins: mySkins });
+  } catch (error) {
+    return next(error);
   }
 };
 
-export const userSkins = async (req: any, res: any) => {
+export const updateUserSkinColor = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { color, id } = req.body;
+  if (isNaN(id) || id < 0 || !color) {
+    return next(new Error("invalid_Id"));
+  }
+  try {
+    const updatedSkin = await userSkinService.updateSkinColor(id, color);
+    if (!updatedSkin) {
+      return next(new Error("skin_not_found"));
+    }
+    res.status(200).json({ message: "Skin color updated" });
+  } catch (error: unknown) {
+    return next(error);
+  }
+};
+
+export const deleteUserSkin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  if (isNaN(Number(id)) || Number(id) < 0) {
+    return next(new Error("invalid_Id"));
+  }
+
+  try {
+    const skin = await userSkinService.deleteSkin(Number(id));
+    if (!skin) {
+      return next(new Error("skin_not_found"));
+    }
+    res.status(200).json({ message: "Skin deleted" });
+  } catch (error: unknown) {
+    return next(error);
+  }
+};
+
+export const userSkins = async (req: Request, res: Response) => {
   database.query(QUERY_USERSKINS.SELECT_USERS, (err, results) => {
     if (err) {
       res.status(500).json({ message: err.message });

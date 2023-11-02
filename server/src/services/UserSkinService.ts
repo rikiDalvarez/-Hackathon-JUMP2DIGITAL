@@ -1,7 +1,4 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
-import { Skin } from "../types";
-import { ResultSetHeader } from "mysql2";
-
 export class UserSkinService {
   userSkinInterface: UserSkinInterface;
   constructor(userSkinInterface: UserSkinInterface) {
@@ -20,7 +17,11 @@ export class UserSkinService {
     return this.userSkinInterface.getMySkins(userId);
   }
 
-  updateSkinColor(userSkinId: number, color: string): Promise<object> {
+  updateSkinColor(userSkinId: number, color: string): Promise<boolean> {
     return this.userSkinInterface.updateSkinColor(userSkinId, color);
+  }
+
+  deleteSkin(id: number): Promise<boolean> {
+    return this.userSkinInterface.deleteSkin(id);
   }
 }

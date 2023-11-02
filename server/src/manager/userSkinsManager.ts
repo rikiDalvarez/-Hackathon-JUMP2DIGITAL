@@ -1,7 +1,4 @@
 import { UserSkinInterface } from "../Interfaces/UserSkinInterface";
-import QUERY_SKINS from "../query/skins.query";
-import { Skin } from "../types";
-import { ResultSetHeader } from "mysql2";
 export class UserSkinsManager implements UserSkinInterface {
   db: any;
   query: any;
@@ -19,11 +16,10 @@ export class UserSkinsManager implements UserSkinInterface {
       this.db.query(
         this.query.CREATE_NEW_USER_SKIN,
         [userId, skinId, color],
-        (err: any, results: any) => {
+        (err: Error, results: any) => {
           if (err) {
-            reject(err.message);
+            reject(new Error(err.message));
           } else {
-            console.log("results", results);
             resolve(true);
           }
         }
@@ -36,9 +32,9 @@ export class UserSkinsManager implements UserSkinInterface {
       this.db.query(
         this.query.SELECT_USER_SKINS,
         [userId],
-        (err: any, results: any) => {
+        (err: Error, results: any) => {
           if (err) {
-            reject(err.message);
+            reject(new Error(err.message));
           } else {
             resolve(results);
           }
@@ -47,16 +43,32 @@ export class UserSkinsManager implements UserSkinInterface {
     });
   }
 
-  async updateSkinColor(userSkinId: number, color: string): Promise<object> {
+  async updateSkinColor(userSkinId: number, color: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.query(
         this.query.UPDATE_USERSKIN_COLOR,
         [color, userSkinId],
         (err: any, results: any) => {
           if (err) {
-            reject(err.message);
+            reject(new Error(err.message));
           } else {
-            resolve(results);
+            resolve(results.affectedRows > 0);
+          }
+        }
+      );
+    });
+  }
+
+  async deleteSkin(userSkinId: number): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.db.query(
+        this.query.DELETE_USER_SKIN,
+        [userSkinId],
+        (err: any, results: any) => {
+          if (err) {
+            reject(new Error(err.message));
+          } else {
+            resolve(results.affectedRows > 0);
           }
         }
       );
