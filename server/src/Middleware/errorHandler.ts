@@ -12,10 +12,8 @@ export const errorHandler = (
   switch (error.message) {
     case "invalid_Id":
       return response.status(400).send({ Error: "Invalid id" });
-    case "GettingLoserError":
-      return response
-        .status(500)
-        .send({ Error: "Error getting Losers players" });
+    case "skin_not_found":
+      return response.status(400).send({ Error: "No skin found" });
     case "GetRankingWithAverageError":
       return response
         .status(500)

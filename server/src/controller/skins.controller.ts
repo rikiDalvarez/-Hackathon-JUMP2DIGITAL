@@ -10,14 +10,19 @@ export const getSkin = async (
 ) => {
   const { id } = req.params;
   const numberId = Number(id);
-  if (isNaN(numberId)) {
+
+  if (isNaN(numberId) || numberId < 0) {
     return next(new Error("invalid_Id"));
   }
-  const skin = await skinService.getSkinById(numberId);
-  if (skin) {
+
+  try {
+    const skin = await skinService.getSkinById(numberId);
+    if (!skin) {
+      return next(new Error("skin_not_found"));
+    }
     res.status(200).send({ skin });
-  } else {
-    res.status(404).json({ message: "Skin not found" });
+  } catch (error) {
+    return next(error);
   }
 };
 

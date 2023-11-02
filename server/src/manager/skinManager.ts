@@ -14,7 +14,8 @@ export class SkinManager implements SkinInterface {
         this.query.SELECT_AVAILABLE_SKINS,
         (err: any, results: any) => {
           if (err) {
-            reject(err.message);
+            console.log(err.message);
+            reject(new Error(err.message));
           } else {
             resolve(results);
           }
@@ -25,13 +26,27 @@ export class SkinManager implements SkinInterface {
 
   async getSkinById(id: number): Promise<object> {
     return new Promise((resolve, reject) => {
-      this.db.query(this.query.SELECT_SKIN, [id], (err: any, results: any) => {
-        if (err) {
-          reject(err.message);
-        } else {
-          resolve(results[0]);
+      this.db.query(
+        { sql: this.query.SELECT_SKIN, timeout: 4000, values: [id] },
+        // this.query.SELECT_SKIN, [id],
+        //         {
+        //   sql: 'SELECT * FROM `books` WHERE `author` = ?',
+        //   timeout: 40000, // 40s
+        //   values: ['David']
+        // }, function (error, results, fields) {
+        //   // error will be an Error if one occurred during the query
+        //   // results will contain the results of the query
+        //   // fields will contain information about the returned results fields (if any)
+        //       }
+        (err: any, results: any) => {
+          if (err) {
+            reject(new Error(err.message));
+          } else {
+            console.log("results", results);
+            resolve(results[0]);
+          }
         }
-      });
+      );
     });
   }
 }
