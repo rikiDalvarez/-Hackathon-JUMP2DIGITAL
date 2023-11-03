@@ -20,7 +20,27 @@ services:
       SERVICE_NAME: mysqldb 
     networks:
       - app-network
+  
+  nodejsapp:
+    build:
+      context: ./   
+      dockerfile: Dockerfile
+    container_name: nodejscontainer
+    depends_on:
+      - mysqldb
+    restart: unless-stopped
+    # working_dir: /app
+    # volumes:
+    #   - ./app:/app  
+    ports:
+      - 5555:5555
+    env_file:
+      - .env 
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
+
       
