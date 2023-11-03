@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "hackathon-backend",
-    "dateExported": "2023-10-22T19:35:36.815Z",
+    "dateExported": "2023-11-03T09:46:47.699Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-10-22T14:05:16.431Z",
-            "modified": "2023-10-22T17:46:15.975Z",
+            "modified": "2023-11-02T21:38:51.453Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"fluminense\",\n  \"price\": 5,\n  \"type\": \"sofrido\",\n  \"color\": \"black\",\n  \"quantity\": 10\n}",
+                "raw": "{\n  \"name\": \"dormir\",\n  \"price\": 51,\n  \"type\": \"5\",\n  \"color\": \"black\",\n  \"quantity\": 10\n}",
                 "form": []
             },
             "tests": []
@@ -33,12 +33,12 @@
             "method": "POST",
             "sortNum": 15000,
             "created": "2023-10-22T14:23:15.962Z",
-            "modified": "2023-10-22T17:44:07.823Z",
+            "modified": "2023-11-03T09:44:56.814Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"email\": \"oduvaldo\"\n}",
+                "raw": "{\n \"email\": \"mr.popis\"\n}",
                 "form": []
             },
             "tests": []
@@ -47,17 +47,17 @@
             "_id": "441580ef-d271-4379-aab4-0270b3fa22d9",
             "colId": "bc648082-a5ef-4ca5-86c2-39cd898a5d74",
             "containerId": "",
-            "name": "getUsers",
+            "name": "getUser",
             "url": "http://localhost:5555/skins/user",
             "method": "GET",
             "sortNum": 17500,
             "created": "2023-10-22T14:24:10.402Z",
-            "modified": "2023-10-22T17:45:41.759Z",
+            "modified": "2023-11-03T09:45:11.610Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"id\": 3\n}",
+                "raw": "{\n \"id\": 19\n}",
                 "form": []
             },
             "tests": []
@@ -85,12 +85,12 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-10-22T14:05:48.159Z",
-            "modified": "2023-10-22T17:46:25.713Z",
+            "modified": "2023-11-02T21:39:22.851Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user_id\": 3,\n  \"skin_id\": 9\n  \n}",
+                "raw": "{\n  \"user_id\": 18,\n  \"skin_id\": 20\n}",
                 "form": []
             },
             "tests": []
@@ -104,28 +104,14 @@
             "method": "GET",
             "sortNum": 40000,
             "created": "2023-10-22T14:06:57.144Z",
-            "modified": "2023-10-22T17:46:44.517Z",
+            "modified": "2023-11-02T21:39:53.720Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user_id\": 3\n}",
+                "raw": "{\n  \"user_id\": 18\n}",
                 "form": []
             },
-            "tests": []
-        },
-        {
-            "_id": "2aaf3e89-b7d1-405a-8d52-013e64c1cba6",
-            "colId": "bc648082-a5ef-4ca5-86c2-39cd898a5d74",
-            "containerId": "",
-            "name": "updateSkinsColor",
-            "url": "http://localhost:5555/skins/myskins/color",
-            "method": "PUT",
-            "sortNum": 50000,
-            "created": "2023-10-22T14:08:01.401Z",
-            "modified": "2023-10-22T14:09:57.055Z",
-            "headers": [],
-            "params": [],
             "tests": []
         },
         {
@@ -133,11 +119,11 @@
             "colId": "bc648082-a5ef-4ca5-86c2-39cd898a5d74",
             "containerId": "",
             "name": "deleteMyskin",
-            "url": "http://localhost:5555/skins/myskins/delete/8",
+            "url": "http://localhost:5555/skins/delete/53",
             "method": "DELETE",
             "sortNum": 60000,
             "created": "2023-10-22T14:08:58.508Z",
-            "modified": "2023-10-22T18:05:03.441Z",
+            "modified": "2023-11-03T09:45:32.073Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -161,16 +147,16 @@
             "colId": "bc648082-a5ef-4ca5-86c2-39cd898a5d74",
             "containerId": "",
             "name": "updateSkinColor",
-            "url": "http://localhost:5555/skins/myskins/color",
+            "url": "http://localhost:5555/skins/color",
             "method": "PUT",
             "sortNum": 80000,
             "created": "2023-10-22T17:54:30.140Z",
-            "modified": "2023-10-22T17:56:11.163Z",
+            "modified": "2023-11-03T09:45:51.624Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"color\": \"fluflu\",\n  \"id\": 8\n}",
+                "raw": "{\n  \"color\": \"plata\",\n  \"id\": 51\n}",
                 "form": []
             },
             "tests": []
@@ -180,16 +166,16 @@
             "colId": "bc648082-a5ef-4ca5-86c2-39cd898a5d74",
             "containerId": "",
             "name": "getSkin",
-            "url": "http://localhost:5555/skin/getskin/7",
+            "url": "http://localhost:5555/skin/getskin/21",
             "method": "GET",
             "sortNum": 90000,
             "created": "2023-10-22T18:12:26.727Z",
-            "modified": "2023-10-22T18:13:13.765Z",
+            "modified": "2023-11-03T09:46:38.403Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"color\": \"fluflu\",\n  \"id\": 8\n}",
+                "raw": "{\n  \"color\": \"leblon\",\n  \"id\": 51\n}",
                 "form": []
             },
             "tests": []
