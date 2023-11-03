@@ -5,8 +5,6 @@
 To install the API, you need to have NodeJS, NPM, and docker installed. Then, you can clone the repository and install the dependencies with `npm install` inside the server folder.
 
 ## Usage
-Inside the server folder create a .env file, and copy the content of the .env.example file to it.
-
 To run the container of our database run `docker-compose up -d` inside the server folder. Then, you can run the API with `npm run dev` inside the server folder.
 If you have thunder-client installed on your IDE, you can follow the steps on the section 1. if not follow the steps on section 2.
 
