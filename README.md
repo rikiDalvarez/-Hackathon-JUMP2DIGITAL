@@ -1,6 +1,6 @@
 # skinsAPI
 
-`skinsAPI` is a simple API for users to get skins developed for the Backend hackathon jump2digital in Barcelona. It is written in Typescript, NodeJS and ExpressJS.
+`skinsAPI` is an API that allows users to query, acquire, modify, and delete skins for a video game.. It`s developed for the Backend hackathon jump2digital in Barcelona. Written in Typescript, NodeJS and ExpressJS.
 The project follow a Hexagonal architecture and SOLID principles.
 
 ## Installation
