@@ -10,7 +10,6 @@ interface ENV {
   DATABASE_ENV: string | undefined;
   PORT: number | undefined;
   DB_PORT: number | undefined;
-  SQL_URI: string | undefined;
   MYSQL_USER: string | undefined;
   MYSQL_PASSWORD: string | undefined;
   DATABASE: string | undefined;
@@ -24,7 +23,6 @@ interface Config {
   DB_PORT: number | undefined;
   NODE_ENV: string | undefined;
   DATABASE_ENV: string | undefined;
-  SQL_URI: string | undefined;
   MYSQL_USER: string | undefined;
   MYSQL_PASSWORD: string | undefined;
   DATABASE: string | undefined;
@@ -40,7 +38,7 @@ const getConfig = (): ENV => {
     DB_PORT: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_ENV: process.env.DATABASE_ENV,
-    SQL_URI: process.env.SQL_URI,
+    // SQL_URI: process.env.SQL_URI,
     MYSQL_USER: process.env.MYSQL_USER,
     MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
     DATABASE: process.env.DATABASE,
